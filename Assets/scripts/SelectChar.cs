@@ -6,6 +6,7 @@ using UnityEngine.AI;
 public class SelectChar : MonoBehaviour
 {
     [SerializeField] GameObject Target;
+    [SerializeField] Vector3 Offset;
     void OnMouseDown()
     {
         GameManager.Instance.player.GetComponent<Rigidbody2D>().simulated = false;
@@ -21,7 +22,7 @@ public class SelectChar : MonoBehaviour
     }
     private void Update()
     {
-        transform.position = Target.transform.position;
+        transform.position = Target.transform.position + Offset;
     }
     private void Start()
     {

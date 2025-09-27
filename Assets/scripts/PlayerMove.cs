@@ -11,10 +11,12 @@ public class PlayerMove : MonoBehaviour
     Animator anim;
     [SerializeField] Joystick jk;
     [SerializeField] GameObject AttackButton;
+    float StartScale;
 
     // Start is called before the first frame update
     void Start()
     {
+        StartScale = transform.localScale.x;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         if (!GameManager.Instance.IsMobile)
@@ -65,11 +67,11 @@ public class PlayerMove : MonoBehaviour
         rb.velocity = new Vector2(H, V).normalized * speed;
         if (H > 0)
         {
-            transform.localScale = new Vector3(-1.5f, 1.5f, 1.5f);
+            transform.localScale = new Vector3(-StartScale, StartScale, StartScale);
         }
         else if (H < 0)
         {
-            transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+            transform.localScale = new Vector3(StartScale, StartScale, StartScale);
         }
         Debug.Log(rb.velocity.magnitude);
         if (V != 0 || H != 0)
