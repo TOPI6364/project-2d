@@ -12,7 +12,7 @@ public class Sup : MonoBehaviour
 
     void Start()
     {
-        StartScale = transform.localScale.x;
+        StartScale = Mathf.Abs(transform.localScale.x);
         anim = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;

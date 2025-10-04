@@ -16,7 +16,7 @@ public class PlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartScale = transform.localScale.x;
+        StartScale = Mathf.Abs(transform.localScale.x);
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponentInChildren<Animator>();
         if (!GameManager.Instance.IsMobile)
