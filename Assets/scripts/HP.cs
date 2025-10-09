@@ -7,8 +7,12 @@ public class HP : MonoBehaviour
     public float disappearDelay = 0.001f; // Время до исчезновения после смерти
     private Animator animator;
     private bool isDead = false;
-    
 
+    SelectChar Selector;
+    void Awake()
+    {
+        Selector = GetComponentInChildren<SelectChar>();
+    }
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
@@ -48,7 +52,8 @@ public class HP : MonoBehaviour
             }
             animator.SetTrigger("Death");
         }
-
+        GameManager.Instance.ChangeAfterDie(this.gameObject);
+        Destroy(Selector.gameObject);
         // Отключаем все компоненты, отвечающие за движение
         MonoBehaviour[] scripts = GetComponents<MonoBehaviour>();
         foreach (var script in scripts)
