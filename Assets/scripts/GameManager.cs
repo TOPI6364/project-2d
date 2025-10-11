@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 { 
     public GameObject player;
     public static GameManager Instance;
     public bool IsMobile;
+    public Image GameOver;
     public List<GameObject> PlayersList = new();
+    [SerializeField] GameObject MobileButtons;
     private void Awake()
     {
         Instance = this;
@@ -19,6 +22,9 @@ public class GameManager : MonoBehaviour
         if (PlayersList.Count == 0)
         {
             Debug.Log("All die");
+            GameOver.gameObject.SetActive(true);
+            MobileButtons.SetActive(false);
+
         }
         else
         {
