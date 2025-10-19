@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
+using UnityEngine.SceneManagement;
 public class AdManager : MonoBehaviour, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
 {
     [SerializeField] string AndroidGameID;
@@ -15,6 +16,10 @@ public class AdManager : MonoBehaviour, IUnityAdsInitializationListener, IUnityA
         Debug.Log("Unity Ads initialization complete.");
         Advertisement.Load(intId, this);
         Advertisement.Load(rewId, this);
+    }
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void OnInitializationFailed(UnityAdsInitializationError error, string message)

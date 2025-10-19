@@ -10,7 +10,7 @@ public class Menu : MonoBehaviour
         Application.Quit();
    }
    public void Play()
-    {
+   {
         SceneManager.LoadScene(1);
-    }
+   }
 }

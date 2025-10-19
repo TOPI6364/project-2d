@@ -12,6 +12,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] Joystick jk;
     [SerializeField] GameObject AttackButton;
     float StartScale;
+    public AudioSource musicSource;     // Сюда в инспекторе добавь AudioSource с музыкой
+    public float detectionRadius = 10f; // Радиус, в котором ищем врагов
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +47,26 @@ public class PlayerMove : MonoBehaviour
             {
                 attack();
             }
+        }
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        bool enemyNearby = false;
+        foreach (GameObject enemy in enemies)
+        {
+            float distance = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distance <= detectionRadius)
+            {
+                enemyNearby = true;
+                break;
+            }
+        }
+        // Включаем или выключаем музыку
+        if (enemyNearby && !musicSource.isPlaying)
+        {
+            musicSource.Play();
+        }
+        else if (!enemyNearby && musicSource.isPlaying)
+        {
+            musicSource.Stop();
         }
     }
 

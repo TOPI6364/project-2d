@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Image GameOver;
     public List<GameObject> PlayersList = new();
     [SerializeField] GameObject MobileButtons;
+    public AudioSource musicSource;
     private void Awake()
     {
         Instance = this;
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("All die");
             GameOver.gameObject.SetActive(true);
             MobileButtons.SetActive(false);
+            musicSource.gameObject.SetActive(false);
 
         }
         else
